@@ -1,0 +1,14 @@
+import os
+
+for file in os.listdir(/share/raw/MiSeq/2021/MARUMBA):
+    if file.endswith("R1_001.fastq.gz"):
+        fn = file[file.rfind("/"):]
+        stub = file[fn.find("-")+1:fn.find("_")]
+        os.mkdir(stub)
+#        os.chdir(stub)
+        os.symlink(file, "%s/%s" %(stub,fn))
+        r2 = file.replace("R1_001.fastq.gz","R2_001.fastq.gz")
+        r2n = r2[r2.rfind("/"):]
+        os.symlink(r2,  "%s/%s" %(stub,r2n))
+#        os.chdir("..")
+        
